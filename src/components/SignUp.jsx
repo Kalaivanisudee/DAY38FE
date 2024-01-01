@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import authService from "../services/auth";
 
 function SignUp() {
   const [name, setName] = useState("");
@@ -9,11 +10,15 @@ function SignUp() {
   const handleSignUp = (e) => {
     e.preventDefault();
     const user = {
-      name,
-      email,
-      password,
+     name: name,
+     username: email,
+     password: password
+
     };
     console.log(user);
+
+    //call the signup sservice
+    authService.signup(user);
 
     setName('');
     setEmail('');
@@ -38,7 +43,7 @@ function SignUp() {
         </div>
       </form>
       <p>
-        Already Registered ? <Link to="/signin">Login</Link>{" "}
+        Already Registered ? <Link to="/signin">Login</Link>
       </p>
     </div>
   );
